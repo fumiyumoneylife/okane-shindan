@@ -1,125 +1,17 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>お金の健康診断</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ふみゆラボ｜お金の健康診断</title>
+  <meta name="description" content="30問で今のお金の現在地がわかる、ふみゆラボのお金の健康診断です。" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <main class="app-shell">
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
-    <div class="bg-orb orb-3"></div>
-
-    <header class="topbar">
-      <div class="brand">fumiyu_moneylife <span>♡</span></div>
-      <button class="mini-btn" type="button" id="benefitBtn">🔒 特典ページへ</button>
-    </header>
-
-    <section id="homeScreen" class="screen active">
-      <div class="hero-card">
-        <p class="eyebrow">3分でわかる！</p>
-        <h1><span>お金の</span><br>健康診断</h1>
-        <p class="subcopy">あなたのお金の<span>現在地</span>がわかります</p>
-        <div class="hero-main">
-          <div class="speech-bubble">
-            <p>一緒に<br><span>お金の体力</span>を<br>チェックしよう！</p>
-          </div>
-          <img class="hero-img float-in" src="assets/images/hero.png" alt="ふみゆキャラクター" />
-        </div>
-        <div class="power-card">
-          <h2>✨ 6つの章でチェック！ ✨</h2>
-          <div class="power-list">
-            <div><span>🔍</span><small>知る習慣</small></div>
-            <div><span>🛡️</span><small>守る習慣</small></div>
-            <div><span>👛</span><small>整える習慣</small></div>
-            <div><span>🌱</span><small>育てる習慣</small></div>
-            <div><span>📘</span><small>学ぶ習慣</small></div>
-            <div><span>🚩</span><small>行動の習慣</small></div>
-          </div>
-        </div>
-        <div class="meta-row">
-          <span>⏱ 約3分で完了！</span>
-          <span>▤ 全30問で診断！</span>
-        </div>
-        <button class="primary-btn breathe" type="button" id="startBtn">診断をはじめる　→</button>
-        <p class="note">気軽にサクッとチェックしてみよう！</p>
-      </div>
-    </section>
-
-    <section id="passwordScreen" class="screen">
-      <div class="simple-card">
-        <button class="back-link" type="button" data-go="homeScreen">← 戻る</button>
-        <h2>特典ページ</h2>
-        <p>パスワードを入力してください。</p>
-        <input id="passwordInput" class="password-input" type="password" placeholder="パスワード" autocomplete="off" />
-        <p id="passwordError" class="error-text"></p>
-        <button class="primary-btn" type="button" id="passwordSubmit">診断へ進む</button>
-        <p class="hint">試作品用パスワード：<span>fumiyu</span></p>
-      </div>
-    </section>
-
-    <section id="questionScreen" class="screen">
-      <div class="question-page">
-        <div class="question-head">
-          <button class="circle-btn" id="toHome" type="button">←</button>
-          <div class="title-mini">お金の健康診断 <span>♡</span></div>
-          <button class="mini-btn" id="resumeBtn" type="button">途中から再開</button>
-        </div>
-
-        <div class="progress-card">
-          <div class="progress-label">
-            <span id="chapterLabel">第1章　お金を知る習慣</span>
-            <strong id="progressPercent">3%</strong>
-          </div>
-          <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
-          <div class="progress-numbers">
-            <span>1問目</span>
-            <b id="questionCount">1 / 30</b>
-            <span>30問目</span>
-          </div>
-          <p>⏱ 診断は全30問・<span>約3分</span>で完了します</p>
-        </div>
-
-        <div class="question-card">
-          <div class="chapter-pill" id="chapterPill">知る習慣</div>
-          <h2><span id="qNum">Q1.</span><span id="questionText">この半年で、毎月のお金の流れを確認しましたか？</span></h2>
-          <div class="question-layout">
-            <div id="answers" class="answer-list"></div>
-            <img id="chapterImage" class="question-character" src="assets/images/calc.png" alt="章に合わせたキャラクター" />
-          </div>
-          <div class="advice-box">💡 正解・不正解はありません。いちばん近いものを選んでくださいね。</div>
-        </div>
-
-        <div class="bottom-actions">
-          <button class="secondary-btn" type="button" id="prevBtn">← 前の質問へ</button>
-          <button class="primary-btn" type="button" id="nextBtn">次の質問へ　→</button>
-        </div>
-        <div class="jump-row" id="jumpRow"></div>
-        <div class="save-bar">
-          <span>☁ 自動保存中</span>
-          <small id="saveStatus">あなたの回答を保存しています</small>
-        </div>
-      </div>
-    </section>
-
-    <section id="completeScreen" class="screen">
-      <div class="simple-card complete-card" id="captureArea">
-        <h2>診断完了！</h2>
-        <p class="complete-lead">30問すべて回答できました。おつかれさまでした！</p>
-        <img class="complete-img" src="assets/images/done.png" alt="完了キャラクター" />
-        <div class="score-preview">
-          <p>回答データは保存されています。</p>
-          <p>次のPhaseで、レーダーチャートと専用カルテを表示します。</p>
-        </div>
-        <button class="primary-btn" type="button" id="resultBtn">結果画面へ進む（次のPhaseで実装）</button>
-        <button class="secondary-btn" type="button" id="saveImageBtn">画像で保存</button>
-        <button class="plain-btn" type="button" id="restartBtn">もう一度診断する</button>
-      </div>
-      <canvas id="confettiCanvas" aria-hidden="true"></canvas>
-    </section>
-  </main>
+  <div class="app-shell">
+    <main id="app" aria-live="polite"></main>
+  </div>
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
   <script src="js/app.js"></script>
 </body>
 </html>
