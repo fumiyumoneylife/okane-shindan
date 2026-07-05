@@ -1,76 +1,64 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>お金タイプ診断｜イメージ</title>
-  <style>
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif; background: #fff7f2; color: #4b3b38; }
-    .page { max-width: 430px; margin: 0 auto; min-height: 100vh; padding: 24px 18px 40px; background: radial-gradient(circle at 20% 10%, #ffe3df 0 12%, transparent 13%), radial-gradient(circle at 90% 30%, #fff0d8 0 10%, transparent 11%), linear-gradient(180deg, #fff7f2 0%, #fff1ec 100%); }
-    .card { background: #ffffff; border-radius: 28px; padding: 28px 22px; box-shadow: 0 12px 34px rgba(152, 89, 83, .14); border: 1px solid #f1d7d1; text-align: center; }
-    .badge { display: inline-block; padding: 7px 14px; background: #f8ded9; color: #a45a63; border-radius: 999px; font-size: 13px; font-weight: 700; margin-bottom: 18px; }
-    h1 { margin: 0; font-size: 31px; line-height: 1.35; color: #9b535d; letter-spacing: .04em; }
-    .lead { margin: 18px 0 0; font-size: 15px; color: #77635e; line-height: 1.8; }
-    .hero { margin: 24px auto; width: 180px; height: 150px; position: relative; }
-    .coin { position: absolute; border-radius: 50%; background: #ffd884; border: 4px solid #f4b85c; color: #a66b16; font-weight: 800; display: grid; place-items: center; box-shadow: 0 8px 18px rgba(176,119,46,.18); }
-    .coin.big { width: 88px; height: 88px; left: 46px; top: 28px; font-size: 33px; }
-    .coin.small1 { width: 46px; height: 46px; left: 12px; top: 72px; font-size: 18px; }
-    .coin.small2 { width: 52px; height: 52px; right: 8px; top: 62px; font-size: 20px; }
-    .flower { position: absolute; color: #e89aa4; font-size: 30px; left: 22px; top: 10px; }
-    .book { position: absolute; width: 94px; height: 58px; background: #f6c5c1; border-radius: 10px 10px 16px 16px; left: 44px; bottom: 4px; border: 3px solid #d9828b; }
-    .book:before { content: ""; position: absolute; left: 44px; top: 0; width: 3px; height: 58px; background: #d9828b; }
-    .btn { display: block; width: 100%; box-sizing: border-box; border-radius: 999px; background: #d9828b; color: white; padding: 16px 18px; font-size: 17px; font-weight: 800; text-decoration: none; box-shadow: 0 8px 18px rgba(217,130,139,.28); }
-    .mini { margin-top: 14px; font-size: 12px; color: #8a746f; }
-    .sample { margin-top: 22px; background: rgba(255,255,255,.62); border: 1px solid #f0d6cf; border-radius: 22px; padding: 16px; }
-    .sample-title { font-size: 13px; color: #9b535d; font-weight: 800; margin-bottom: 12px; text-align: left; }
-    .question-card { background: #fff; border: 1px solid #f1d7d1; border-radius: 18px; padding: 16px; text-align: left; }
-    .progress { height: 8px; background: #f3e0db; border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
-    .bar { height: 100%; width: 40%; background: #d9828b; }
-    .q { color: #9b535d; font-weight: 800; font-size: 13px; margin-bottom: 8px; }
-    .qtext { font-weight: 800; font-size: 16px; margin-bottom: 12px; }
-    .choice { border: 1px solid #f0d6cf; border-radius: 14px; padding: 10px 12px; margin-top: 9px; background: #fffaf8; font-size: 14px; }
-    .choice.on { border-color: #d9828b; background: #fff0f1; color: #9b535d; font-weight: 800; }
-    .result { margin-top: 18px; background: #fff; border: 1px solid #f1d7d1; border-radius: 18px; padding: 16px; text-align: center; }
-    .result-icon { font-size: 36px; }
-    .result-title { color: #9b535d; font-weight: 900; font-size: 20px; margin-top: 4px; }
-    .result-text { font-size: 13px; color: #77635e; line-height: 1.7; margin-top: 8px; }
-    .footer { text-align: center; margin-top: 18px; color: #9b837e; font-size: 12px; }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff8f2" />
+  <title>お金の健康診断 | fumiyu_moneylife</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <main class="page">
-    <section class="card">
-      <div class="badge">無料セルフチェック</div>
-      <h1>10問でわかる<br>お金タイプ診断</h1>
-      <p class="lead">今のお金との向き合い方をチェックして、あなたに合う「次の一歩」を見つけましょう。</p>
-      <div class="hero" aria-hidden="true">
-        <div class="flower">✿</div>
-        <div class="coin big">¥</div>
-        <div class="coin small1">¥</div>
-        <div class="coin small2">¥</div>
-        <div class="book"></div>
-      </div>
-      <a class="btn" href="#sample">診断をはじめる</a>
-      <div class="mini">所要時間：約1分／名前・メールアドレス不要</div>
-    </section>
+  <main class="app-shell" id="app">
+    <section class="screen home-screen" aria-labelledby="home-title">
+      <div class="soft-orb orb-1"></div>
+      <div class="soft-orb orb-2"></div>
+      <div class="soft-orb orb-3"></div>
+      <div class="sparkle sparkle-1">✦</div>
+      <div class="sparkle sparkle-2">✧</div>
+      <div class="sparkle sparkle-3">♡</div>
 
-    <section id="sample" class="sample">
-      <div class="sample-title">画面イメージ</div>
-      <div class="question-card">
-        <div class="progress"><div class="bar"></div></div>
-        <div class="q">Q4 / 10</div>
-        <div class="qtext">制度や税金のこと、どれくらい知っていますか？</div>
-        <div class="choice">使ったことがある</div>
-        <div class="choice on">聞いたことはある</div>
-        <div class="choice">よく分からない</div>
+      <header class="brand-row">
+        <p class="brand-name">fumiyu_moneylife</p>
+        <a class="secret-link" href="#password" aria-label="特典ページへ進む">
+          <span class="lock-icon">🔒</span>
+          特典ページへ
+        </a>
+      </header>
+
+      <div class="hero-copy">
+        <p class="eyebrow">3分でわかる！</p>
+        <h1 id="home-title"><span>お金の</span><br />健康診断</h1>
+        <p class="lead">あなたのお金の<span>現在地</span>がわかります</p>
       </div>
-      <div class="result">
-        <div class="result-icon">📚</div>
-        <div class="result-title">学びはじめタイプ</div>
-        <div class="result-text">お金のことが気になり始めているタイプ。<br>まずは制度やしくみを知ると、家計に役立つ選択がしやすくなります。</div>
+
+      <div class="mascot-area" aria-hidden="true">
+        <div class="speech-bubble">一緒に<br />お金の<span>体力</span>を<br />チェックしよう！</div>
+        <img class="mascot mascot-home" src="assets/images/mascot-home.png" alt="" />
       </div>
+
+      <section class="power-card" aria-label="チェックできる5つの力">
+        <h2>5つの力をチェック！</h2>
+        <div class="power-grid">
+          <div class="power-item"><div class="power-icon icon-household">▦</div><p>家計力</p></div>
+          <div class="power-item"><div class="power-icon icon-save">♣</div><p>貯める力</p></div>
+          <div class="power-item"><div class="power-icon icon-protect">♢</div><p>守る力</p></div>
+          <div class="power-item"><div class="power-icon icon-grow">↗</div><p>増やす力</p></div>
+          <div class="power-item"><div class="power-icon icon-action">●</div><p>行動力</p></div>
+        </div>
+      </section>
+
+      <div class="meta-row" aria-label="診断の目安">
+        <div class="meta-pill"><span>◷</span>約3分で完了！</div>
+        <div class="meta-pill"><span>▤</span>全30問でしっかり診断！</div>
+      </div>
+
+      <button class="primary-button breathe" type="button" id="startButton">
+        診断をはじめる <span aria-hidden="true">→</span>
+      </button>
+      <p class="foot-note">気軽にサクッとチェックしてみよう！ ♡</p>
     </section>
-    <div class="footer">© fumiyu money life</div>
   </main>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
