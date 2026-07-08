@@ -1409,7 +1409,212 @@ h1 span {
     padding: 13px 11px 14px;
   }
 
-  .todayMessage {
-    font-size: 13px;
+.todayMessage {
+  font-size: 13px;
+  }
+}
+
+.result-phone.exporting-result {
+  background: #fff4df;
+}
+
+.result-phone.exporting-result .glass {
+  background: #fffefa !important;
+  border-color: rgba(47, 158, 149, .32) !important;
+  box-shadow: 0 8px 18px rgba(90, 65, 42, .12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.result-phone.exporting-result .textBlock p,
+.result-phone.exporting-result .fumiBlock p,
+.result-phone.exporting-result .missionBlock li,
+.result-phone.exporting-result .detailType,
+.result-phone.exporting-result .todayMessage {
+  color: #4a342c !important;
+  font-weight: 900;
+}
+
+.result-phone.exporting-result h3,
+.result-phone.exporting-result .smallLabel,
+.result-phone.exporting-result .diagnosisDate {
+  color: #128b82 !important;
+}
+
+.result-phone.exporting-result .stars {
+  color: #e29a00 !important;
+  font-weight: 950;
+}
+
+.result-phone.exporting-result .healthBadge,
+.result-phone.exporting-result .todayMessage {
+  background: #dff7f1 !important;
+}
+
+.result-phone.exporting-result .resultBtns {
+  display: none !important;
+}
+
+.savePreview {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  padding: 14px;
+  background: rgba(255, 248, 236, .96);
+}
+
+.savePreviewHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 18px;
+  background: #fffefa;
+  box-shadow: 0 10px 24px rgba(90, 65, 42, .12);
+}
+
+.savePreviewHead p {
+  margin: 0;
+  color: #4a342c;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.savePreviewClose {
+  min-width: 64px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 12px;
+  color: #fff;
+  background: #ff6269;
+  font-weight: 950;
+}
+
+.savePreviewList {
+  overflow: auto;
+  display: grid;
+  gap: 14px;
+  padding-bottom: 22px;
+}
+
+.savePreviewItem {
+  margin: 0;
+  padding: 10px;
+  border-radius: 18px;
+  background: #fffefa;
+  box-shadow: 0 10px 24px rgba(90, 65, 42, .12);
+}
+
+.savePreviewItem img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Result contrast fix */
+#result.screen.active {
+  display: block;
+}
+
+#result .phone {
+  width: min(100%, 410px);
+  margin: 0 auto;
+}
+
+.result-phone {
+  padding: 12px 13px 18px !important;
+  color: #3d2a24;
+  background: #fff9ef;
+}
+
+.result-phone .glass {
+  background: #fffefa !important;
+  border-color: rgba(47, 158, 149, .24) !important;
+  box-shadow: 0 8px 18px rgba(90, 65, 42, .1);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.resultHero {
+  padding: 13px 13px 9px !important;
+}
+
+.scoreLine strong {
+  color: #f04f58 !important;
+  font-size: 56px;
+}
+
+.healthBadge {
+  color: #128b82 !important;
+  background: #dff7f1 !important;
+  font-weight: 950;
+}
+
+.resultHero h2,
+.typeLabel,
+.smallLabel {
+  color: #168d84;
+  font-weight: 950;
+}
+
+.detailType,
+.textBlock p,
+.fumiBlock p,
+.missionBlock li,
+.todayMessage {
+  color: #4a342c !important;
+  font-weight: 900;
+}
+
+.textBlock h3,
+.balanceBlock h3,
+.missionBlock h3,
+.fumiBlock h3 {
+  color: #128b82 !important;
+  font-weight: 950;
+}
+
+.starRow b {
+  color: #4a342c;
+  font-weight: 950;
+}
+
+.stars {
+  color: #e49b00 !important;
+  font-weight: 950;
+  text-shadow: 0 1px 0 rgba(255,255,255,.9);
+}
+
+.missionBlock li {
+  background: #fff !important;
+}
+
+.resultBtns {
+  gap: 10px;
+}
+
+.resultBtns .nextBtn,
+.resultBtns .subBig {
+  min-height: 46px;
+  font-size: 14px;
+}
+
+@media (max-width: 380px) {
+  #result .phone {
+    width: 100%;
+  }
+
+  .result-phone {
+    padding: 10px 10px 16px !important;
+  }
+
+  .scoreLine strong {
+    font-size: 52px;
   }
 }

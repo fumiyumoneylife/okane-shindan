@@ -222,5 +222,89 @@ function showResultPreview(){const params=new URLSearchParams(location.search);i
 function imageAsset(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=src;});}
 function drawSaveSection(ctx,title,body,y){ctx.fillStyle='#ffffff';roundRect(ctx,78,y,924,10,28);ctx.fill();ctx.fillStyle='#168d84';ctx.font='bold 34px sans-serif';ctx.textAlign='left';ctx.fillText(title,126,y+58);ctx.fillStyle='#4f3b34';ctx.font='30px sans-serif';const nextY=wrapText(ctx,body,126,y+112,820,46);const h=Math.max(150,nextY-y+30);ctx.fillStyle='#ffffff';roundRect(ctx,78,y,924,h,28);ctx.fill();ctx.strokeStyle='rgba(38,157,146,.22)';ctx.lineWidth=3;roundRect(ctx,78,y,924,h,28);ctx.stroke();ctx.fillStyle='#168d84';ctx.font='bold 34px sans-serif';ctx.fillText(title,126,y+58);ctx.fillStyle='#4f3b34';ctx.font='30px sans-serif';wrapText(ctx,body,126,y+112,820,46);return y+h+26;}
 async function saveImage(){if(!result)return;const saveBtn=$('saveBtn');const oldText=saveBtn.textContent;saveBtn.textContent='保存中...';saveBtn.disabled=true;try{const c=document.createElement('canvas');c.width=1080;c.height=3300;const ctx=c.getContext('2d');ctx.fillStyle='#fff3df';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#bdf0e8';ctx.beginPath();ctx.arc(930,160,190,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ffc9ce';ctx.beginPath();ctx.arc(130,3080,250,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fffefa';roundRect(ctx,54,54,972,3192,54);ctx.fill();ctx.strokeStyle='rgba(38,157,146,.55)';ctx.lineWidth=6;roundRect(ctx,88,88,904,3124,42);ctx.stroke();ctx.textAlign='center';ctx.fillStyle='#3f2c25';ctx.font='bold 48px sans-serif';ctx.fillText('お金の健康診断',540,162);ctx.fillStyle='#168d84';ctx.font='bold 58px sans-serif';let y=252;y=wrapText(ctx,result.moneyType||result.type,540,y,820,70);ctx.fillStyle='#f04f58';ctx.font='bold 150px sans-serif';ctx.fillText(String(result.score),500,470);ctx.font='bold 52px sans-serif';ctx.fillText('点',660,470);ctx.fillStyle='#168d84';ctx.font='bold 38px sans-serif';ctx.fillText(result.healthText,540,548);const img=await imageAsset(result.img);ctx.drawImage(img,390,582,300,300);y=930;ctx.textAlign='left';ctx.fillStyle='#3f2c25';ctx.font='bold 38px sans-serif';ctx.fillText('5つの力',126,y);y+=58;POWERS.forEach(p=>{ctx.font='bold 32px sans-serif';ctx.fillStyle='#3f2c25';ctx.fillText(p,126,y);ctx.fillStyle='#e6a300';ctx.font='bold 38px sans-serif';ctx.fillText(star(result.stars[p]),430,y);y+=58;});y+=14;y=drawSaveSection(ctx,'総合コメント',result.summary,y);y=drawSaveSection(ctx,result.insightTitle,result.strength,y);y=drawSaveSection(ctx,'次の一歩',result.next,y);ctx.fillStyle='#ffffff';roundRect(ctx,78,y,924,300,28);ctx.fill();ctx.strokeStyle='rgba(38,157,146,.22)';ctx.lineWidth=3;roundRect(ctx,78,y,924,300,28);ctx.stroke();ctx.fillStyle='#168d84';ctx.font='bold 34px sans-serif';ctx.fillText('今日からのミッション3つ',126,y+58);let my=y+116;ctx.fillStyle='#4f3b34';ctx.font='30px sans-serif';result.missions.forEach(m=>{ctx.strokeStyle='#168d84';ctx.lineWidth=5;roundRect(ctx,126,my-26,30,30,6);ctx.stroke();const nextY=wrapText(ctx,m,176,my,760,42);my=Math.max(my+68,nextY+18);});y=Math.max(y+300,my+22);const fumi=await imageAsset(ASSETS.good);ctx.fillStyle='#ffffff';roundRect(ctx,78,y,924,260,28);ctx.fill();ctx.strokeStyle='rgba(38,157,146,.22)';ctx.lineWidth=3;roundRect(ctx,78,y,924,260,28);ctx.stroke();ctx.drawImage(fumi,110,y+68,150,150);ctx.fillStyle='#168d84';ctx.font='bold 34px sans-serif';ctx.fillText('ふみゆから一言',126,y+58);ctx.fillStyle='#4f3b34';ctx.font='30px sans-serif';wrapText(ctx,result.fumi,292,y+102,650,44);y+=294;ctx.textAlign='center';ctx.fillStyle='#168d84';ctx.font='bold 30px sans-serif';ctx.fillText('診断日：'+todayText(),540,y);y+=50;ctx.fillStyle='#f04f58';ctx.font='bold 32px sans-serif';ctx.fillText('半年後にもう一度診断してみよう！',540,y);y+=58;ctx.fillStyle='#3f2c25';ctx.font='bold 30px sans-serif';ctx.fillText('今日から1つだけ始めてみましょう。',540,y);y+=44;ctx.fillText('半年後には、きっと今とは違う結果になっています。',540,y);y+=60;ctx.fillStyle='#168d84';ctx.font='bold 28px sans-serif';ctx.fillText('fumiyu_moneylife',540,y);const out=document.createElement('canvas');out.width=1080;out.height=Math.min(3300,Math.ceil(y+90));out.getContext('2d').drawImage(c,0,0);downloadCanvas(out);}catch(e){alert('画像保存に失敗しました。もう一度お試しください。');}finally{saveBtn.textContent=oldText;saveBtn.disabled=false;}}
-async function saveImage(){const target=document.querySelector('.result-phone');if(!result||!target)return;const saveBtn=$('saveBtn');const oldText=saveBtn.textContent;saveBtn.textContent='保存中...';saveBtn.disabled=true;try{const html2canvas=await loadHtml2Canvas();const canvas=await html2canvas(target,{backgroundColor:'#fff8ec',scale:3,useCORS:true,allowTaint:false,scrollX:0,scrollY:0,width:target.scrollWidth,height:target.scrollHeight,windowWidth:target.scrollWidth,windowHeight:target.scrollHeight});downloadCanvas(canvas);}catch(e){alert('画像保存に失敗しました。もう一度お試しください。');}finally{saveBtn.textContent=oldText;saveBtn.disabled=false;}}
+async function saveImage(){const target=document.querySelector('.result-phone');if(!result||!target)return;const saveBtn=$('saveBtn');const oldText=saveBtn.textContent;saveBtn.textContent='保存中...';saveBtn.disabled=true;target.classList.add('exporting-result');try{await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const html2canvas=await loadHtml2Canvas();const canvas=await html2canvas(target,{backgroundColor:'#fff4df',scale:3,useCORS:true,allowTaint:false,scrollX:0,scrollY:0,width:target.scrollWidth,height:target.scrollHeight,windowWidth:target.scrollWidth,windowHeight:target.scrollHeight});const pageHeight=Math.round(canvas.width*1.62);const total=Math.ceil(canvas.height/pageHeight);for(let i=0;i<total;i++){const y=i*pageHeight;const h=Math.min(pageHeight,canvas.height-y);const page=document.createElement('canvas');page.width=canvas.width;page.height=h;const ctx=page.getContext('2d');ctx.fillStyle='#fff4df';ctx.fillRect(0,0,page.width,page.height);ctx.drawImage(canvas,0,y,canvas.width,h,0,0,canvas.width,h);const a=document.createElement('a');a.download=total===1?'okane-shindan-result.png':`okane-shindan-result-${i+1}.png`;a.href=page.toDataURL('image/png');a.click();await new Promise(r=>setTimeout(r,450));}}catch(e){alert('画像保存に失敗しました。もう一度お試しください。');}finally{target.classList.remove('exporting-result');saveBtn.textContent=oldText;saveBtn.disabled=false;}}
+function canvasBlob(canvas){return new Promise(resolve=>canvas.toBlob(resolve,'image/png',1));}
+function splitCanvas(canvas){
+  const pageHeight=Math.round(canvas.width*1.18);
+  const total=Math.ceil(canvas.height/pageHeight);
+  const pages=[];
+  for(let i=0;i<total;i++){
+    const y=i*pageHeight;
+    const h=Math.min(pageHeight,canvas.height-y);
+    const page=document.createElement('canvas');
+    page.width=canvas.width;
+    page.height=h;
+    const ctx=page.getContext('2d');
+    ctx.fillStyle='#fff4df';
+    ctx.fillRect(0,0,page.width,page.height);
+    ctx.drawImage(canvas,0,y,canvas.width,h,0,0,canvas.width,h);
+    pages.push({canvas:page,name:total===1?'okane-shindan-result.png':`okane-shindan-result-${i+1}.png`});
+  }
+  return pages;
+}
+function showSavePreview(pages){
+  document.querySelector('.savePreview')?.remove();
+  const wrap=document.createElement('div');
+  wrap.className='savePreview';
+  const head=document.createElement('div');
+  head.className='savePreviewHead';
+  const note=document.createElement('p');
+  note.textContent='保存用画像を作りました。画像を長押しして「写真に保存」してください。複数枚ある場合は順番に保存できます。';
+  const close=document.createElement('button');
+  close.type='button';
+  close.className='savePreviewClose';
+  close.textContent='閉じる';
+  close.onclick=()=>wrap.remove();
+  head.append(note,close);
+  const list=document.createElement('div');
+  list.className='savePreviewList';
+  pages.forEach((page,i)=>{
+    const fig=document.createElement('figure');
+    fig.className='savePreviewItem';
+    const img=document.createElement('img');
+    img.alt=`診断結果 ${i+1}`;
+    img.src=page.canvas.toDataURL('image/png');
+    fig.appendChild(img);
+    list.appendChild(fig);
+  });
+  wrap.append(head,list);
+  document.body.appendChild(wrap);
+}
+async function sharePagesIfPossible(pages){
+  if(!navigator.canShare||!navigator.share||typeof File==='undefined')return false;
+  const files=[];
+  for(const page of pages){
+    const blob=await canvasBlob(page.canvas);
+    if(!blob)return false;
+    files.push(new File([blob],page.name,{type:'image/png'}));
+  }
+  if(!navigator.canShare({files}))return false;
+  await navigator.share({files,title:'お金の健康診断 結果'});
+  return true;
+}
+async function saveImage(){
+  const target=document.querySelector('.result-phone');
+  if(!result||!target)return;
+  const saveBtn=$('saveBtn');
+  const oldText=saveBtn.textContent;
+  saveBtn.textContent='保存中...';
+  saveBtn.disabled=true;
+  target.classList.add('exporting-result');
+  try{
+    await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+    const html2canvas=await loadHtml2Canvas();
+    const canvas=await html2canvas(target,{backgroundColor:'#fff4df',scale:3,useCORS:true,allowTaint:false,scrollX:0,scrollY:0,width:target.scrollWidth,height:target.scrollHeight,windowWidth:target.scrollWidth,windowHeight:target.scrollHeight});
+    const pages=splitCanvas(canvas);
+    try{
+      if(await sharePagesIfPossible(pages))return;
+    }catch(e){}
+    showSavePreview(pages);
+  }catch(e){
+    alert('画像保存に失敗しました。もう一度お試しください。');
+  }finally{
+    target.classList.remove('exporting-result');
+    saveBtn.textContent=oldText;
+    saveBtn.disabled=false;
+  }
+}
 window.addEventListener('DOMContentLoaded',()=>{$('startBtn').onclick=()=>{idx=0;selected=null;answers=[];renderQuestion();show('question');};$('backBtn').onclick=prevQuestion;$('prevBtn').onclick=prevQuestion;$('nextBtn').onclick=nextQuestion;$('topBtn').onclick=()=>show('top');$('againBtn').onclick=()=>show('top');$('saveBtn').onclick=saveImage;window.addEventListener('resize',syncAnswerHeights);showResultPreview();});
