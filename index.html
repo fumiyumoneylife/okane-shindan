@@ -1,17 +1,97 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>ふみゆラボ｜お金の健康診断</title>
-  <meta name="description" content="30問で今のお金の現在地がわかる、ふみゆラボのお金の健康診断です。" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>お金の健康診断｜fumiyu_moneylife</title>
+  <meta name="description" content="25問でお金の健康度を診断します。">
+  <link rel="stylesheet" href="style.css?v=20260708-2">
 </head>
 <body>
-  <div class="app-shell">
-    <main id="app" aria-live="polite"></main>
-  </div>
-  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
-  <script src="js/app.js"></script>
+<main class="app">
+  <section id="top" class="screen active">
+    <div class="phone top-phone">
+      <div class="deco d1"></div><div class="deco d2"></div><div class="deco d3"></div>
+      <header class="brand"><span>fumiyu_moneylife</span><b>Ver.1</b></header>
+      <p class="catch">3分でできる、わたしのお金チェック</p>
+      <h1>お金の<br><span>健康診断</span></h1>
+      <p class="lead">今の安心度と、次にやることが<span>ぱっと見える</span></p>
+      <div class="hero-card glass">
+        <div class="speech"><span>今のお金、</span><strong>どれくらい<br>安心？</strong><em>25問でやさしく診断</em></div>
+        <div class="charaBox"><img src="assets/ok-small.png" alt="ふみゆ" class="chara heroChara"></div>
+      </div>
+      <div class="glass powerIntro">
+        <h2>診断で見える5つの力</h2>
+        <div class="powerGrid">
+          <span data-icon="¥">家計力</span><span data-icon="貯">貯める力</span><span data-icon="守">守る力</span><span data-icon="増">増やす力</span><span data-icon="相">相談力</span><i aria-hidden="true"><b></b><b></b><b></b><b></b><b></b></i>
+        </div>
+      </div>
+      <div class="chips"><span>約3分</span><span>全25問</span></div>
+      <button id="startBtn" class="mainBtn">診断をはじめる</button>
+      <p class="note">正解・不正解ではなく、今の状態を知る診断です。</p>
+    </div>
+  </section>
+
+  <section id="question" class="screen">
+    <div class="phone question-phone">
+      <header class="nav"><button id="backBtn" class="subBtn">戻る</button><strong>お金の健康診断</strong></header>
+      <div class="glass progressCard">
+        <div class="progressTop"><span id="qNo">1 / 25</span><span id="qPct">4%</span></div>
+        <div class="bar"><i id="barFill"></i></div>
+      </div>
+      <article class="glass qCard">
+        <p id="stepName" class="stepName"></p>
+        <p id="powerName" class="powerName"></p>
+        <h2 id="qText"></h2>
+        <div id="answers" class="answers"></div>
+      </article>
+      <aside class="glass tipCard">
+        <img id="tipChara" src="assets/pc.png" alt="ふみゆ" class="chara tipChara">
+        <p id="tipText"></p>
+      </aside>
+      <div class="navBtns"><button id="prevBtn" class="subBig">前へ</button><button id="nextBtn" class="nextBtn">次へ</button></div>
+    </div>
+  </section>
+
+  <section id="loading" class="screen">
+    <div class="phone loading-phone">
+      <div class="glass loadingCard">
+        <img src="assets/pc.png" alt="ふみゆ" class="chara loadingChara">
+        <h2>診断中...</h2>
+        <p>あなたのお金の健康状態をまとめています</p>
+        <div class="loadingBar"><i id="loadingFill"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="screen">
+    <div class="phone result-phone">
+      <header class="nav resultNav"><button id="topBtn" class="subBtn">トップへ</button><strong>診断結果</strong></header>
+      <section class="glass resultHero">
+        <p class="smallLabel">あなたの点数</p>
+        <div class="scoreLine"><strong id="scoreNum">0</strong><span>点</span></div>
+        <p id="healthLabel" class="healthBadge"></p>
+        <p class="typeLabel">あなたのお金タイプ</p>
+        <h2 id="typeName"></h2>
+        <p id="detailType" class="detailType"></p>
+        <div class="resultCharaBox"><img id="resultChara" src="assets/yattaa.png" alt="ふみゆ" class="chara resultChara"></div>
+      </section>
+
+      <section class="glass textBlock"><h3>総合コメント</h3><p id="summaryText"></p></section>
+      <section class="glass balanceBlock"><h3>5つの力</h3><div id="balanceList"></div></section>
+      <section class="glass textBlock"><h3 id="strengthTitle">あなたの強み</h3><p id="strengthText"></p></section>
+      <section class="glass textBlock"><h3>次の一歩</h3><p id="nextText"></p></section>
+      <section class="glass missionBlock"><h3>今日からのミッション3つ</h3><ul id="missions"></ul></section>
+      <section class="glass fumiBlock"><h3>ふみゆから一言</h3><img src="assets/good.png" alt="ふみゆ" class="chara fumiChara"><p id="fumiText"></p></section>
+      <section class="glass closingBlock">
+        <p id="diagnosisDate" class="diagnosisDate"></p>
+        <p class="retryText">半年後にもう一度診断してみよう！</p>
+        <p class="todayMessage">今日から1つだけ始めてみましょう。<br>半年後には、きっと今とは違う結果になっています。</p>
+      </section>
+      <div class="resultBtns"><button id="saveBtn" class="nextBtn">結果画像を保存</button><button id="againBtn" class="subBig">もう一度診断</button></div>
+    </div>
+  </section>
+</main>
+<script src="script.js?v=20260708-4"></script>
 </body>
 </html>
