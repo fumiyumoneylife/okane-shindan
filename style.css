@@ -1597,12 +1597,14 @@ h1 span {
 
 .resultBtns {
   gap: 10px;
+  justify-content: center;
 }
 
 .resultBtns .nextBtn,
 .resultBtns .subBig {
   min-height: 46px;
   font-size: 14px;
+  max-width: 220px;
 }
 
 @media (max-width: 380px) {

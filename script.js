@@ -457,4 +457,4 @@ async function saveImage(){
     saveBtn.disabled=false;
   }
 }
-window.addEventListener('DOMContentLoaded',()=>{$('startBtn').onclick=()=>{idx=0;selected=null;answers=[];renderQuestion();show('question');};$('backBtn').onclick=prevQuestion;$('prevBtn').onclick=prevQuestion;$('nextBtn').onclick=nextQuestion;$('topBtn').onclick=()=>show('top');$('againBtn').onclick=()=>show('top');$('saveBtn').onclick=saveImage;window.addEventListener('resize',syncAnswerHeights);showResultPreview();});
+window.addEventListener('DOMContentLoaded',()=>{$('startBtn').onclick=()=>{idx=0;selected=null;answers=[];renderQuestion();show('question');};$('backBtn').onclick=prevQuestion;$('prevBtn').onclick=prevQuestion;$('nextBtn').onclick=nextQuestion;$('topBtn').onclick=()=>show('top');$('againBtn').onclick=()=>show('top');if($('saveBtn'))$('saveBtn').onclick=saveImage;window.addEventListener('resize',syncAnswerHeights);showResultPreview();});
